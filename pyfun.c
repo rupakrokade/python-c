@@ -1,9 +1,9 @@
 #define PY_SSIZE_T_CLEAN
 #include <Python.h>
-
+#include"pyfun.h"
 
 int
-fun(char *file_name, char *fun_name, int in1, int in2)
+pyfun(char *file_name, char *fun_name, int in1, int in2)
 {
     PyObject *pName, *pModule, *pFunc;
     PyObject *pArgs, *pValue;
@@ -65,14 +65,14 @@ fun(char *file_name, char *fun_name, int in1, int in2)
         else {
             if (PyErr_Occurred())
                 PyErr_Print();
-            fprintf(stderr, "Cannot find function \"%s\"\n", 11);
+            fprintf(stderr, "Cannot find function \"%s\"\n", " ");
         }
         Py_XDECREF(pFunc);
         Py_DECREF(pModule);
     }
     else {
         PyErr_Print();
-        fprintf(stderr, "Failed to load \"%s\"\n",12);
+        fprintf(stderr, "Failed to load \"%s\"\n","python file");
         return 1;
     }
     if (Py_FinalizeEx() < 0) {
@@ -81,8 +81,4 @@ fun(char *file_name, char *fun_name, int in1, int in2)
     return 0;
 }
 
-int main()
-{
-printf("Calling function...\n");
-	fun("multiply","multiply",13,4);
-}
+
